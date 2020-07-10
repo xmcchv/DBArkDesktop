@@ -32,5 +32,5 @@
 
 ## 注意！
 1. Assets\Epoque\Util中的代码是网上借鉴的，并不适用于MPL开源许可证。
-2. 项目中涉及的音频文件和程序图标所属权属于明日方舟所有
+2. 项目中涉及的音频文件和程序图标属于明日方舟所有
 3. 项目中使用的龙骨动画由Bilibili up Q-video提供（项目地址https://github.com/soarteam/Arknights）
