@@ -24,7 +24,10 @@ public enum enumWinStyle
     /// <summary>
     /// 置顶透明并且可以穿透
     /// </summary>
-    WinTopAphaPenetrate
+    WinTopAphaPenetrate,
+
+    //透明穿透
+    AphaPenetrate
 }
 public class WinSetting : MonoBehaviour
 {
@@ -95,9 +98,9 @@ public class WinSetting : MonoBehaviour
     {
 
         Screen.fullScreen = false;
-        //#if UNITY_EDITOR
-        //       print("编辑模式不更改窗体");
-        //#else
+        /*#if UNITY_EDITOR
+               print("编辑模式不更改窗体");
+        #else*/
         switch (WinStyle)
         {
             case enumWinStyle.WinTop:
@@ -117,11 +120,16 @@ public class WinSetting : MonoBehaviour
                 isApha = true;
                 isAphaPenetrate = true;
                 break;
+            case enumWinStyle.AphaPenetrate:
+                isWinTop = false;
+                isApha = true;
+                isAphaPenetrate = true;
+                break;
         }
 
         //
-        //IntPtr hwnd = FindWindow(null, strProduct);
-        hwnd = GetActiveWindow();
+        IntPtr hwnd = FindWindow(null, strProduct);
+        //hwnd = GetActiveWindow();
 
         //
         if (isApha)
@@ -137,8 +145,14 @@ public class WinSetting : MonoBehaviour
             SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_BORDER & ~WS_CAPTION);
 
             //保持中间位置：因为是从左上角算起的，所以获得屏幕像素后要减去窗体宽高的一半
-            currentX = Screen.currentResolution.width / 2 - 320 / 2;
-            currentY = Screen.currentResolution.height / 2 - 270 / 2;
+            //currentX = Screen.currentResolution.width / 2 - 320 / 2;
+            //currentY = Screen.currentResolution.height / 2 - 270 / 2;
+
+            //获取设置当前屏幕分辩率 
+            Resolution[] resolutions = Screen.resolutions;
+            //设置当前分辨率 
+            Screen.SetResolution(resolutions[resolutions.Length - 1].width, resolutions[resolutions.Length - 1].height, true);
+
 
             SetWindowPos(hwnd, -1, currentX, currentY, ResWidth, ResHeight, SWP_SHOWWINDOW);
             var margins = new MARGINS() { cxLeftWidth = -1 };

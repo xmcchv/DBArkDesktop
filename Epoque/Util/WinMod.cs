@@ -32,8 +32,8 @@ public class WinMod : MonoBehaviour
 
 	private const string folder = "/WinXML/";
 	private const string file = "win.xml";
-	private const int defaultWidth = 1280;
-	private const int defaultHeight = 720;
+	private const int defaultWidth = 1920;
+	private const int defaultHeight = 1080;
 	private IntPtr handler;
 
 	private void Start()
