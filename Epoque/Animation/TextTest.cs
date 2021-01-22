@@ -28,12 +28,12 @@ namespace Assets.Epoque.Animation
 
             // 获取当前时间
 
-            //DateTime dateTime = DateTime.Now;
+            DateTime dateTime = DateTime.Now;
 
             // 将当前时间显示在 Text 控件上
 
-            //m_Text.text = dateTime.ToString();
-            m_Text.text = text;
+            m_Text.text = dateTime.ToString();
+            //m_Text.text = text;
 
         }
 
